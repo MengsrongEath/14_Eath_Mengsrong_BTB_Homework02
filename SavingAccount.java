@@ -1,6 +1,6 @@
 import java.util.Random;
 class SavingAccount implements Account {
-
+    String red = "\u001B[31m", green = "\u001B[32m", reset = "\u001B[0m", blue = "\u001B[34m", purple = "\u001B[35m";
 
     private int accountNumber;
     private String userName;
@@ -36,12 +36,26 @@ class SavingAccount implements Account {
 
     @Override
     public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            System.out.println("Withdrawn: $" + amount);
-        } else {
-            System.out.println("Insufficient funds or invalid amount!");
+        if (amount <= 0) {
+            System.out.println(red + "Invalid withdrawal amount!");
+            return;
         }
+        if (this instanceof SavingAccount) {
+            double maxWithdraw = balance * 0.8;
+            if (amount > maxWithdraw) {
+                double minRequired = balance * 0.2;
+                System.out.println(red + "Cannot transfer $" + amount + ". At least $" + minRequired + " must remain in the account." + reset);
+                return;
+            }
+        }
+        if (amount > balance) {
+            System.out.println(red + "Insufficient funds!" + red );
+            return;
+        }
+        balance -= amount;
+        System.out.println("Withdraw: $" + amount);
+        System.out.println("Total balance: $" + balance);
+        System.out.println(green + "Withdrawal successful");
     }
 
     @Override
@@ -58,13 +72,13 @@ class SavingAccount implements Account {
     @Override
     public void displayAccountInfo() {
         System.out.println(">>>>>>>>>>>>>>>> Checking Account <<<<<<<<<<<<<<<<<");
-        System.out.println("Account Type:" + "Saving Account");
-        System.out.println("Account Number:" + accountNumber);
-        System.out.println("User Name:" + userName);
-        System.out.println("Date of Birth:" + dateOfBirth);
-        System.out.println("Gender:" + gander);
-        System.out.println("Phone Number" + phoneNumber);
-        System.out.println("Banlance:" + balance);
+        System.out.println("Account Type:" + green + "Saving Account" + reset);
+        System.out.println("Account Number:" + green + accountNumber + reset);
+        System.out.println("User Name:" + green + userName + reset);
+        System.out.println("Date of Birth:" + green + dateOfBirth + reset);
+        System.out.println("Gender:" + green + gander + reset);
+        System.out.println("Phone Number" + green + phoneNumber + reset);
+        System.out.println("Banlance:" + green + balance + reset);
         System.out.println("Interest Rate: " + (rate * 100) + "%");
     }
 }

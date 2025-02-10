@@ -18,10 +18,10 @@ public class Main {
             System.out.println("3. withdraw Money");
             System.out.println("4. Transfer Money");
             System.out.println("5. Display Account Information");
-            System.out.println("Delete Account");
-            System.out.println("Exit");
+            System.out.println("6. Delete Account");
+            System.out.println("7. Exit");
             System.out.println("-----------------------------------------");
-            System.out.print("=> Choose option(1-7) :");
+            System.out.print("\n=> Choose option(1-7) :");
 
             int choose = sc.nextInt();
             switch(choose){
@@ -32,7 +32,7 @@ public class Main {
                         System.out.println("2. Saving Account");
                         System.out.println("3. Back");
                         System.out.println("===================================================");
-                        System.out.print("What type of account do you want to create ?");
+                        System.out.print("\nWhat type of account do you want to create ?");
                         int option = sc.nextInt();
                         sc.nextLine();
                         if (option == 3) break;
@@ -48,7 +48,7 @@ public class Main {
                                 System.out.print("Enter phone number:");
                                 String phoneNumber = sc.nextLine();
                                 if (option == 1) {
-                                    checkingAccount = new CheckingAccount(0, userName, dateOfBirth, gander, phoneNumber, 0.0);
+                                    checkingAccount = new CheckingAccount(userName, dateOfBirth, gander, phoneNumber, 0.0);
                                     System.out.println(green + "Your checking account has been created successfuly!" + reset);
                                     break;
                                 }
@@ -78,7 +78,7 @@ public class Main {
                         System.out.println("2. Saving Account");
                         System.out.println("3. Back");
                         System.out.println("===================================================");
-                        System.out.print("Choose an opption:");
+                        System.out.print("\nChoose an opption:");
 
                         int option = sc.nextInt();
                         sc.nextLine();
@@ -90,18 +90,19 @@ public class Main {
                                 double amount = sc.nextInt();
                                 checkingAccount.deposit(amount);
                                 System.out.println(" ".repeat(10)+"Checking Account"+" ".repeat(10));
-                                System.out.println("Resived:" + "$ " + amount);
+                                System.out.println("\nResived:" + "$ " + amount);
                                 System.out.println("==================================================");
-                                System.out.println(green + "Deposit successful!" + reset );
+                                System.out.println(green + "\nDeposit successful!" + reset );
                                 break;
                             case 2:
                                 System.out.print("Enter money to deposit:");
-                                double amount = sc.nextInt();
-                                savingAccount.deposit(amount);
+                                double amount1 = sc.nextInt();
+                                savingAccount.deposit(amount1);
                                 System.out.println(" ".repeat(10)+"Saving Account"+" ".repeat(10));
-                                System.out.println("Resived:" + "$ " + amount);
+                                System.out.println("\nResived:" + "$ " + amount1);
+                                System.out.println("Total:" + "$" + amount1);
                                 System.out.println("==================================================");
-                                System.out.println(green + "Deposit successful!" + reset );
+                                System.out.println(green + "\nDeposit successful!" + reset );
                                 break;
                         }
                     }
@@ -117,20 +118,29 @@ public class Main {
                         int option = sc.nextInt();
                         sc.nextLine();
                         if (option == 3)
-
+                            break;
                         switch (option) {
                             case 1:
                                 System.out.print("Enter money to withdraw:");
-                                double amount = sc.nextInt();
-                                checkingAccount.withdraw(amount);
-                                System.out.println(" ".repeat(10)+"Checking Account"+" ".repeat(10));
-                                System.out.println("Resived:" + "$ " + amount);
+                                double amount1 = sc.nextInt();
+                                checkingAccount.withdraw(amount1);
+                                System.out.println(" ".repeat(10)+"Withdraw Account"+" ".repeat(10));
+                                System.out.println("Withdraw:" + "$ " + amount1);
                                 System.out.println("==================================================");
-                                System.out.println(green + "Deposit successful!" + reset );
+                                System.out.println(green + "\nWithdraw successful!" + reset );
+                                break;
+                            case 2:
+                                System.out.print("Enter money to withdraw:");
+                                double amount2 = sc.nextInt();
+                                savingAccount.withdraw(amount2);
+                                System.out.println(" ".repeat(10)+"Saving Account"+" ".repeat(10));
+                                System.out.println("Withdraw:" + "$ " + amount2);
+                                System.out.println("==================================================");
+                                System.out.println(green + "\nWithdraw successful!" + reset );
                                 break;
                         }
                     }
-                    break;
+//                    break;
                 case 4:
                     System.out.println("This is case 4");
                     break;
@@ -144,7 +154,7 @@ public class Main {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid option! Try again.");
+                    System.out.println( red + "Invalid option! Try again." + reset);
             }
 
         }
